@@ -2,7 +2,6 @@
 
 A production-ready **Retrieval-Augmented Generation (RAG)** application with inline citations. Built with Python FastAPI backend and React frontend.
 
-> **Author:** [Shubhankit Singh](https://github.com/shubhankitsingh)
 
 ---
 
