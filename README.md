@@ -1,4 +1,4 @@
-# 🔍 Mini-RAG
+# 🔍 Track 2 (Mini-RAG)
 
 A production-ready **Retrieval-Augmented Generation (RAG)** application with inline citations. Built with Python FastAPI backend and React frontend.
 
