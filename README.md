@@ -1,4 +1,4 @@
-# 🔍 RAG Knowledge Assistant
+# 🔍 Mini-RAG
 
 A production-ready **Retrieval-Augmented Generation (RAG)** application with inline citations. Built with Python FastAPI backend and React frontend.
 
@@ -451,6 +451,6 @@ Each vector stored in Pinecone includes:
 
 **Shubhankit Singh**
 
-- 🐙 GitHub: [github.com/shubhankitsingh](https://github.com/shubhankitsingh)
+- 🐙 Resume: [github.com/shubhankitsingh]([https://github.com/shubhankitsingh](https://drive.google.com/drive/u/1/folders/1fbz70wkgYIyN5PUa1ITZKRwDW8uCJ12L))
 
 ---
