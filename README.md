@@ -2,8 +2,7 @@
 
 A production-ready **Retrieval-Augmented Generation (RAG)** application with inline citations. Built with Python FastAPI backend and React frontend.
 
-> **Author:** [Your Name](https://linkedin.com/in/YOUR_LINKEDIN)  
-> **Resume:** [View Resume](https://your-resume-link.com)
+> **Author:** [Shubhankit Singh](https://github.com/shubhankitsingh)
 
 ---
 
@@ -118,8 +117,8 @@ A production-ready **Retrieval-Augmented Generation (RAG)** application with inl
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/mini-rag.git
-cd rmini-rag
+git clone https://github.com/shubhankitsingh/Mini-RAG.git
+cd Mini-RAG
 ```
 
 ### 2. Setup Backend
@@ -183,14 +182,49 @@ npm run dev
 
 ## 📊 API Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/ingest` | Ingest text content |
-| `POST` | `/ingest/file` | Upload and ingest file |
-| `POST` | `/query` | Query with RAG pipeline |
-| `DELETE` | `/clear` | Clear all vectors |
-| `GET` | `/stats` | Get database statistics |
-| `GET` | `/health` | Health check |
+| Method | Endpoint | Description | Request Body |
+|--------|----------|-------------|--------------|
+| `POST` | `/ingest` | Ingest text content | `{ text, title, source }` |
+| `POST` | `/ingest/file` | Upload and ingest file | `multipart/form-data` |
+| `POST` | `/query` | Query with RAG pipeline | `{ query, top_k, rerank_top_k }` |
+| `DELETE` | `/clear` | Clear all vectors | - |
+| `GET` | `/stats` | Get database statistics | - |
+| `GET` | `/health` | Health check | - |
+
+### Example API Usage
+
+**Ingest Text:**
+```bash
+curl -X POST "http://localhost:8000/ingest" \
+  -H "Content-Type: application/json" \
+  -d '{"text": "Your document content here", "title": "My Document", "source": "manual"}'
+```
+
+**Query:**
+```bash
+curl -X POST "http://localhost:8000/query" \
+  -H "Content-Type: application/json" \
+  -d '{"query": "What is the return policy?", "top_k": 10, "rerank_top_k": 5}'
+```
+
+---
+
+## 🔐 Environment Variables
+
+### Backend (`backend/.env`)
+
+| Variable | Required | Description | Where to Get |
+|----------|----------|-------------|--------------|
+| `GOOGLE_API_KEY` | ✅ | Gemini API for embeddings | [Google AI Studio](https://aistudio.google.com/) |
+| `PINECONE_API_KEY` | ✅ | Vector database access | [Pinecone Console](https://app.pinecone.io/) |
+| `COHERE_API_KEY` | ✅ | Reranker API | [Cohere Dashboard](https://dashboard.cohere.com/) |
+| `GROQ_API_KEY` | ✅ | LLM inference | [Groq Console](https://console.groq.com/) |
+
+### Frontend (Vercel Environment)
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `VITE_API_URL` | ✅ (production) | Backend API URL (e.g., `https://your-api.onrender.com`) |
 
 ---
 
@@ -203,19 +237,45 @@ cd backend/tests
 python test_eval.py
 ```
 
-**Sample Output:**
+### Evaluation Results
+
+| Metric | Score | Description |
+|--------|-------|-------------|
+| **Success Rate** | 100% (5/5) | All queries returned expected answers |
+| **Precision** | 100% | All retrieved chunks were relevant |
+| **Recall** | 100% | All relevant documents were retrieved |
+| **Citation Accuracy** | 100% | Citations correctly map to source documents |
+| **Avg Keywords Match** | 77% | Percentage of expected keywords in response |
+| **Avg Citations/Query** | 5.0 | Number of source citations per answer |
+
+### Gold Set Test Cases
+
+| # | Query | Expected Source | Result |
+|---|-------|-----------------|--------|
+| 1 | What is the return policy? | Returns & Refunds Policy | ✅ PASS |
+| 2 | What are the security best practices? | Security Guidelines | ✅ PASS |
+| 3 | How long does shipping take? | Shipping FAQ | ✅ PASS |
+| 4 | What is the battery capacity? | X100 Power Station Specs | ✅ PASS |
+| 5 | What is the employee vacation policy? | NONE (unrelated) | ✅ PASS |
+
+### Sample Output
 ```
+🧪 RAG EVALUATION - GOLD SET TEST
+==================================
+
 Q1: What is the return policy?
    Expected Source: Returns & Refunds Policy
-   ✓ PASS - Keywords: 100%, Citations: 5
+   ✅ PASS - Keywords: 100%, Citations: 5
 
 Q5: What is the employee vacation policy?
    Expected Source: NONE - Unrelated
-   ✓ PASS - Correctly identified as unrelated (no info)
+   ✅ PASS - Correctly identified as unrelated (no info)
 
-EVALUATION SUMMARY
-Success Rate: 5/5 (100%)
-Avg Keyword Score: 77%
+══════════════════════════════════════════════════════════════
+📊 EVALUATION SUMMARY
+══════════════════════════════════════════════════════════════
+Success Rate: 5/5 (100.0%)
+Avg Keyword Score: 77.0%
 Avg Citations: 5.0
 ```
 
@@ -279,7 +339,73 @@ Each vector stored in Pinecone includes:
 
 ---
 
-## 📝 Remarks (Limits, Trade-offs & Future Work)
+## � Deployment
+
+### Backend - Render (Free Tier)
+
+1. **Connect GitHub Repo** to [Render](https://render.com)
+2. **Create Web Service:**
+   - **Root Directory:** `backend`
+   - **Build Command:** `pip install -r requirements.txt`
+   - **Start Command:** `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+3. **Add Environment Variables:**
+   ```
+   GOOGLE_API_KEY=your_key
+   PINECONE_API_KEY=your_key
+   COHERE_API_KEY=your_key
+   GROQ_API_KEY=your_key
+   ```
+4. **Deploy** - Takes ~2-3 minutes
+
+### Frontend - Vercel (Free Tier)
+
+1. **Import GitHub Repo** to [Vercel](https://vercel.com)
+2. **Configure:**
+   - **Root Directory:** `frontend`
+   - **Framework Preset:** Vite
+3. **Add Environment Variable:**
+   ```
+   VITE_API_URL=https://your-render-backend.onrender.com
+   ```
+4. **Deploy** - Takes ~1 minute
+
+### Deployment Architecture
+
+```
+┌─────────────────┐         ┌─────────────────┐
+│     Vercel      │         │     Render      │
+│   (Frontend)    │────────▶│    (Backend)    │
+│   React + Vite  │  HTTPS  │    FastAPI      │
+└─────────────────┘         └────────┬────────┘
+                                     │
+                    ┌────────────────┼────────────────┐
+                    ▼                ▼                ▼
+             ┌──────────┐     ┌──────────┐     ┌──────────┐
+             │ Pinecone │     │  Cohere  │     │   Groq   │
+             │ (Vectors)│     │(Reranker)│     │  (LLM)   │
+             └──────────┘     └──────────┘     └──────────┘
+```
+
+### Live Demo
+
+- **Frontend:** [your-app.vercel.app](https://your-app.vercel.app)
+- **Backend API:** [your-api.onrender.com](https://your-api.onrender.com)
+- **API Docs:** [your-api.onrender.com/docs](https://your-api.onrender.com/docs)
+
+---
+
+## �📝 Remarks (Limits, Trade-offs & Future Work)
+
+### Limits Encountered During Development
+
+| Issue | Cause | Solution |
+|-------|-------|----------|
+| **Pinecone package rename** | `pinecone-client` → `pinecone` | Updated requirements.txt |
+| **Python 3.13 compatibility** | Strict version pins failed | Changed to flexible versions (`>=`) |
+| **Document overwrites** | Chunk IDs based only on position | Added content hash to ID generation |
+| **CORS errors** | Frontend-backend cross-origin | Added `allow_origins=["*"]` middleware |
+| **Cohere rate limits** | Free tier: 10 req/min | Added retry logic with backoff |
+| **Large file uploads** | Memory issues on free tier | Limited to text files, chunked processing |
 
 ### Current Limitations
 
@@ -323,11 +449,8 @@ Each vector stored in Pinecone includes:
 
 ## 🙋 Author
 
-**[Your Name]**
+**Shubhankit Singh**
 
-- 📧 Email: your.email@example.com
-- 💼 LinkedIn: [linkedin.com/in/YOUR_LINKEDIN](https://linkedin.com/in/YOUR_LINKEDIN)
-- 📄 Resume: [View Resume](https://your-resume-link.com)
-- 🐙 GitHub: [github.com/YOUR_USERNAME](https://github.com/YOUR_USERNAME)
+- 🐙 GitHub: [github.com/shubhankitsingh](https://github.com/shubhankitsingh)
 
 ---
