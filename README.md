@@ -448,8 +448,6 @@ Each vector stored in Pinecone includes:
 
 ## 🙋 Author
 
-**Shubhankit Singh**
-
-- 🐙 Resume: [github.com/shubhankitsingh]([https://github.com/shubhankitsingh](https://drive.google.com/drive/u/1/folders/1fbz70wkgYIyN5PUa1ITZKRwDW8uCJ12L))
+- 🐙 Resume: [**Shubhankit Singh**]([https://github.com/shubhankitsingh](https://drive.google.com/drive/u/1/folders/1fbz70wkgYIyN5PUa1ITZKRwDW8uCJ12L))
 
 ---
