@@ -1,0 +1,122 @@
+# Sample Documents for RAG Evaluation
+# These are the 4 sample documents used for the gold set evaluation.
+# Copy each section separately and paste into the RAG app to test.
+
+================================================================================
+DOCUMENT 1: RETURNS AND REFUNDS POLICY
+================================================================================
+
+COMPANY POLICY: RETURNS AND REFUNDS
+Last Updated: January 2026
+
+1.0 Overview
+Our goal is to ensure customer satisfaction with every purchase. This document outlines the eligibility and procedures for returns.
+
+2.0 General Returns
+Most items purchased from our store can be returned within 45 days of delivery for a full refund or store credit.
+
+3.0 Return Process
+To initiate a return:
+- Log into your account
+- Navigate to Order History
+- Select the item and click "Return Item"
+- Print the prepaid shipping label
+- Ship within 7 days
+
+4.0 Electronics Category
+4.1 High-value electronic items, including smartphones, laptops, and tablets, are subject to stricter guidelines due to security and activation concerns.
+4.2 Electronics must be returned within 15 days of delivery.
+4.3 All original packaging, accessories, and documentation must be included.
+4.4 Items showing signs of use beyond initial testing may be subject to restocking fees.
+
+5.0 Refund Timeline
+- Store credit: 1-2 business days
+- Original payment method: 5-7 business days
+- Bank processing may add additional time
+
+================================================================================
+DOCUMENT 2: USER ACCOUNT SECURITY GUIDE
+================================================================================
+
+USER ACCOUNT SECURITY GUIDE
+Version 2.1
+
+Section A: Account Creation
+Users must provide a valid email address and a password containing at least 10 characters, including one special symbol.
+
+Section B: Password Recovery
+If you lose access to your account, you must perform a recovery. Security Guide: Users can reset passwords via the 'Forgot Password' link on the main portal login page.
+
+Step 1: Click the link.
+Step 2: Enter your registered email.
+Step 3: Follow the email instructions sent to your inbox.
+Step 4: Create a new password meeting the security requirements.
+
+Section C: Two-Factor Authentication
+We strongly recommend enabling 2FA for enhanced security:
+- SMS verification
+- Authenticator app (recommended)
+- Backup codes for emergency access
+
+Section D: Account Security Best Practices
+- Never share your password
+- Use unique passwords for each service
+- Enable login notifications
+- Review connected devices regularly
+- Log out from shared computers
+
+================================================================================
+DOCUMENT 3: SHIPPING AND LOGISTICS FAQ
+================================================================================
+
+SHIPPING AND LOGISTICS FREQUENTLY ASKED QUESTIONS
+
+Q: Where do you ship?
+A: We currently ship to all 50 U.S. states, Canada, and selected international locations.
+
+Q: Do you offer international shipping to Europe?
+A: Yes, international shipping is available to all EU countries and the UK. To simplify the process for our European customers, EU and UK orders incur a $25 flat rate shipping fee which covers standard customs handling.
+
+Q: How long does shipping take?
+A: Standard domestic shipping takes 5-7 business days. Express shipping (2-3 days) is available for an additional fee. International orders typically take 10-14 business days.
+
+Q: Can I track my order?
+A: Yes, tracking information is sent via email once your order ships. You can also view tracking in your account dashboard.
+
+Q: What if my package is lost or damaged?
+A: Contact customer support within 48 hours. We will file a claim with the carrier and either reship or refund your order.
+
+Q: Do you offer free shipping?
+A: Orders over $50 qualify for free standard domestic shipping. Members of our loyalty program receive free shipping on all orders.
+
+================================================================================
+DOCUMENT 4: X100 PRODUCT SPECIFICATIONS
+================================================================================
+
+PRODUCT SPECIFICATION SHEET: MODEL X100
+
+Product Name: X100 Portable Power Station
+Release Date: November 2025
+
+Technical Specifications:
+- Battery Type: Lithium-ion (Li-NMC)
+- Capacity: 500Wh
+- Weight: 4.5kg
+- Dimensions: 290mm x 200mm x 195mm
+- Output Ports: 2x AC (110V/60Hz), 3x USB-A (5V/2.4A), 1x USB-C (60W PD)
+- Input: AC wall charger, Solar panel (100W max), Car charger (12V)
+
+Performance:
+The X100 model features a battery life of up to 12 hours on a single charge under standard usage (defined as powering a 40W device continuously). Charging time from 0% to 100% is approximately 3.5 hours using the included wall adapter.
+
+Safety Features:
+- Overcharge protection
+- Short circuit protection
+- Temperature monitoring
+- Low voltage cutoff
+- Surge protection
+
+Warranty:
+2-year manufacturer warranty covering defects in materials and workmanship. Battery capacity guaranteed to maintain 80% capacity after 500 charge cycles.
+
+================================================================================
