@@ -7,10 +7,9 @@ A production-ready **Retrieval-Augmented Generation (RAG)** application with inl
 
 ## 🏗️ Architecture Overview
 
-Reference-style: 
-![alt text][Architecture]
+<img width="902" height="932" alt="brave_screenshot_webwhiteboard com" src="https://github.com/user-attachments/assets/5287edae-e4f0-46b3-a03a-3afe623b5b9b" />
 
-[Architecture](https://github.com/user-attachments/assets/bbfeec95-7758-4cff-b343-999fdee20b9d) "Logo Title Text 2"
+
 
 ---
 
