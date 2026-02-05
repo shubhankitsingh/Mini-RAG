@@ -1,4 +1,4 @@
-![Untitled](https://github.com/user-attachments/assets/bbfeec95-7758-4cff-b343-999fdee20b9d)# 🔍 Track 2 (Mini-RAG)
+# 🔍 Track 2 (Mini-RAG)
 
 A production-ready **Retrieval-Augmented Generation (RAG)** application with inline citations. Built with Python FastAPI backend and React frontend.
 
@@ -10,7 +10,7 @@ A production-ready **Retrieval-Augmented Generation (RAG)** application with inl
 Reference-style: 
 ![alt text][Architecture]
 
-[Architecture]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
+[Architecture](https://github.com/user-attachments/assets/bbfeec95-7758-4cff-b343-999fdee20b9d) "Logo Title Text 2"
 
 ---
 
