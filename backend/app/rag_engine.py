@@ -10,7 +10,8 @@ from typing import List, Dict, Any, Optional
 import cohere
 from pinecone import Pinecone, ServerlessSpec
 from openai import OpenAI
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 import tiktoken
 
 from .models import Citation, ChunkMetadata
@@ -20,7 +21,7 @@ class RAGEngine:
     """
     RAG Engine Configuration:
     - Vector DB: Pinecone (Serverless)
-    - Embeddings: Google Gemini text-embedding-005 (768 dimensions) - FREE!
+    - Embeddings: Google Gemini gemini-embedding-001 (768 dimensions) - FREE!
     - Reranker: Cohere Rerank v3
     - LLM: Groq (Llama 3.1 70B)
     
@@ -33,7 +34,7 @@ class RAGEngine:
     # Configuration
     CHUNK_SIZE = 1000  # tokens
     CHUNK_OVERLAP = 100  # tokens (10% overlap)
-    EMBEDDING_MODEL = "models/text-embedding-005"  # Gemini embedding model
+    EMBEDDING_MODEL = "gemini-embedding-001"  # Gemini embedding model
     EMBEDDING_DIMENSIONS = 768  # Gemini embedding dimensions
     INDEX_NAME = "mini-rag"
     RERANK_MODEL = "rerank-v3.5"
@@ -42,7 +43,7 @@ class RAGEngine:
     def __init__(self):
         """Initialize connections to all services"""
         # Google Gemini for embeddings (FREE!)
-        genai.configure(api_key=os.getenv("GOOGLE_API_KEY") or "")  # type: ignore
+        self.genai_client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY") or "")
         
         # Cohere for reranking
         self.cohere_client = cohere.Client(api_key=os.getenv("COHERE_API_KEY") or "")
@@ -251,22 +252,28 @@ class RAGEngine:
         """Generate embeddings for texts using Google Gemini (FREE!)"""
         embeddings = []
         for text in texts:
-            result = genai.embed_content(  # type: ignore
+            result = self.genai_client.models.embed_content(
                 model=self.EMBEDDING_MODEL,
-                content=text,
-                task_type="retrieval_document"
+                contents=text,
+                config=types.EmbedContentConfig(
+                    task_type="RETRIEVAL_DOCUMENT",
+                    output_dimensionality=self.EMBEDDING_DIMENSIONS
+                )
             )
-            embeddings.append(result['embedding'])
+            embeddings.append(result.embeddings[0].values)
         return embeddings
     
     async def _get_query_embedding(self, text: str) -> List[float]:
         """Generate embedding for query using Google Gemini"""
-        result = genai.embed_content(  # type: ignore
+        result = self.genai_client.models.embed_content(
             model=self.EMBEDDING_MODEL,
-            content=text,
-            task_type="retrieval_query"
+            contents=text,
+            config=types.EmbedContentConfig(
+                task_type="RETRIEVAL_QUERY",
+                output_dimensionality=self.EMBEDDING_DIMENSIONS
+            )
         )
-        return result['embedding']
+        return result.embeddings[0].values
     
     async def ingest_text(
         self,
