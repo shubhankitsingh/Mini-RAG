@@ -20,7 +20,7 @@ class RAGEngine:
     """
     RAG Engine Configuration:
     - Vector DB: Pinecone (Serverless)
-    - Embeddings: Google Gemini text-embedding-004 (768 dimensions) - FREE!
+    - Embeddings: Google Gemini text-embedding-005 (768 dimensions) - FREE!
     - Reranker: Cohere Rerank v3
     - LLM: Groq (Llama 3.1 70B)
     
@@ -33,7 +33,7 @@ class RAGEngine:
     # Configuration
     CHUNK_SIZE = 1000  # tokens
     CHUNK_OVERLAP = 100  # tokens (10% overlap)
-    EMBEDDING_MODEL = "models/text-embedding-004"  # Gemini embedding model
+    EMBEDDING_MODEL = "models/text-embedding-005"  # Gemini embedding model
     EMBEDDING_DIMENSIONS = 768  # Gemini embedding dimensions
     INDEX_NAME = "mini-rag"
     RERANK_MODEL = "rerank-v3.5"
