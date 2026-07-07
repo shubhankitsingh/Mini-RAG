@@ -14,6 +14,7 @@ import {
   ChevronUp,
   ExternalLink
 } from 'lucide-react';
+import { Analytics } from '@vercel/analytics/react';
 
 // API base URL - update for production
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
@@ -541,6 +542,7 @@ function App() {
         <p className="mt-1">Vector DB: Pinecone • Chunking: 1000 tokens with 10% overlap</p>
         <p className="mt-1">Created by <a className='text-blue-500 hover:underline' href="https://github.com/shubhankitsingh" target="_blank" rel="noopener noreferrer">Shubhankit</a></p>
       </footer>
+      <Analytics />
     </div>
   );
 }
